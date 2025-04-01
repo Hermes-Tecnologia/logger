@@ -17,6 +17,13 @@ composer require hermes-tecnologia/logger
 
 ## Usage
 
+HermesTecnologia\Logger\Logger::do('titulo/prefix', array $context, string $sql );
+
+para gerar os arquivos de configuração onde é possivel definir uma pasta para armazenar os arquivos de log. O padrao é storage/logs
+```bash
+php artisan vendor:publish --tag=config --ansi --force
+```
+
 ## Change log
 
 Please see the [changelog](changelog.md) for more information on what has changed recently.
