@@ -20,7 +20,6 @@ class Logger extends Log
                      $trace .= $file .'['. $d['line'] . '] ';
                  }
              }
-             //teste
          }
  
          if(is_array($this->message)){
