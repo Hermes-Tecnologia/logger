@@ -1,6 +1,10 @@
 {
     "name": "hermes-tecnologia/logger",
-    "description": ":package_description",
+    "description": "Custom logger for Laravel",
+    "type": "library",
+    "version": "1.0.1",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "license": "MIT",
     "authors": [
         {
