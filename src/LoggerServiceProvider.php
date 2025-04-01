@@ -3,6 +3,7 @@
 namespace HermesTecnologia\Logger;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Log as MonoLogger;
 
 class LoggerServiceProvider extends ServiceProvider
 {
@@ -37,6 +38,14 @@ class LoggerServiceProvider extends ServiceProvider
         $this->app->singleton('logger', function ($app) {
             return new Logger();
         });
+
+        if ($this->app->runningInConsole()) {
+            $this->publishes([
+                __DIR__.'/../config/logger.php' => config_path('logger.php'),
+            ], 'config');
+
+            MonoLogger::info('register', [__DIR__.'/../config/logger.php', config_path('logger.php'), file_exists(__DIR__.'/../config/logger.php')]);
+        }
     }
 
     /**
@@ -59,7 +68,9 @@ class LoggerServiceProvider extends ServiceProvider
         // Publishing the configuration file.
         $this->publishes([
             __DIR__.'/../config/logger.php' => config_path('logger.php'),
-        ], 'logger.config');
+        ], 'config');
+
+        MonoLogger::info('bootForConsole', [__DIR__.'/../config/logger.php', config_path('logger.php'), file_exists(__DIR__.'/../config/logger.php')]);
 
         // Publishing the views.
         /*$this->publishes([
@@ -77,6 +88,8 @@ class LoggerServiceProvider extends ServiceProvider
         ], 'logger.lang');*/
 
         // Registering package commands.
-        // $this->commands([]);
+        $this->commands([
+            InstallLoggerPackage::class
+        ]);
     }
 }

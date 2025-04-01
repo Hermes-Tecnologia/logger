@@ -31,7 +31,7 @@ class Logger extends Log
  
          // $filelog = config('logging.localpath').$this->prefix.'_'.date("Y-m-d").'.log';
  
-         $path = config('logging.localpath');
+         $path = config('logger.localpath');
          
          $filelog = $path.$this->prefix.'_'. strtoupper( get_current_user() ) .'_'.date("Y-m-d").'.log';
  
